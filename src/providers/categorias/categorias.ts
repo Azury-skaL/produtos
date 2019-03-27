@@ -19,8 +19,12 @@ constructor(private db: AngularFireDatabase){
   })
 }
 
-  get(){
-
+  get(categoriakey:string){
+    return this.db.object(this.PATH + categoriakey)
+    .snapshotChanges()
+    .map(m =>{
+      return { key: m.key, ...m.payload.val()}
+    });
   }
 
   save(categoriaForm: any){
@@ -31,6 +35,8 @@ constructor(private db: AngularFireDatabase){
 
     if (categoriaForm.key){
     //editar
+    this.db.list(this.PATH)
+    .update(categoriaForm.key, categoria);
   } else {
     // salvar um novo
     this.db.list(this.PATH).push(categoria);

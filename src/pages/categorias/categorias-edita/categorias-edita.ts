@@ -21,8 +21,15 @@ form: FormGroup;
     private toast:ToastController) {
 
       this.categoria = this.navParams.data.categoriakey || {}
+      //console.log(this.categoria);
       this.SetupPageTitle();
       this.createForm();
+
+      const subscribe = this.CategoriasProvider.get(this.navParams.data.categoriakey).subscribe(categoriaData =>{
+        subscribe.unsubscribe();
+        this.categoria = categoriaData;
+       // console.log(this.categoria)
+      })
 
   }
 
