@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FirebaseApp } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -17,6 +17,15 @@ constructor(private fb: FirebaseApp, private db: AngularFireDatabase) {
 
 
   }
+  save(item: any, file: File) {
+    const product = {
+      name: item.name,
+      description: item.description,
+      imgUrl: item.imgUrl,
+      price: item.price,
+      categoryKey: item.categoryKey,
+      categoryName: item.categoryName
+    };
 
 
     // consulta todos os produtos, e ordena pelo nome da Categoria
@@ -37,15 +46,6 @@ constructor(private fb: FirebaseApp, private db: AngularFireDatabase) {
   //   }
 
   //     // file é o arquivo passando por parâmetro
-  // save(item: any, file: File) {
-  //   const product = {
-  //     name: item.name,
-  //     description: item.description,
-  //     imgUrl: item.imgUrl,
-  //     price: item.price,
-  //     categoryKey: item.categoryKey,
-  //     categoryName: item.categoryName
-  //   };
 
   //   if (item.key) {
   //     this.db.object(this.PATH + item.key).update(product).then(() => {
@@ -126,4 +126,5 @@ constructor(private fb: FirebaseApp, private db: AngularFireDatabase) {
   //     });
   // }
 
+}
 }
