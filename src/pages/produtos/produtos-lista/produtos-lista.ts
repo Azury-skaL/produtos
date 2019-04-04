@@ -8,24 +8,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ProdutosListaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProdutosListaPage');
-  }
-
-  newItemProdutos(){
+  newItemProdutos(){ // push é método que chama/abre uma página
+                     // o nome da page vc vê na classe da Page
     this.navCtrl.push('ProdutosEditaPage');
   }
 
-  editItemProdutos(produto:any){
-    this.navCtrl.push('ProdutosEditaPage', { produtokey: produto.key} );
-  }
 
-  removeItemProdutos(produtoKey: string, hasImg: boolean){
-    this.produtosProvider.remove(produtoKey, hasImg);
-    this.toast.show('Produto removido com sucesso.');
-  }
 }
