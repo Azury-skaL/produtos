@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Observable } from 'rxjs/Observable';
+import { ProdutosProvider } from './../../../providers/produtos/produtos';
 
 @IonicPage()
 @Component({
@@ -7,9 +9,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'produtos-lista.html',
 })
 export class ProdutosListaPage {
+  produtos: Observable<any[]>;
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              private produtosProvider: ProdutosProvider) {
+
+                this.produtos = this.produtosProvider.getAll();
   }
 
   newItemProdutos(){ // push é método que chama/abre uma página
